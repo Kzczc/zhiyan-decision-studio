@@ -5,7 +5,10 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=req
  const base=process.env.ZHIYAN_URL||'http://127.0.0.1:61321/';
  await page.goto(base);await page.waitForFunction(()=>window.ZhiyanInference&&window.yanceTown);await page.evaluate(()=>document.fonts.ready);
  for(const width of [1440,1024,768,390]){
-  await page.setViewportSize({width,height:960});await page.locator('#models-open').click();
+  await page.setViewportSize({width,height:960});
+  assert.equal(await page.locator('.llm-workspace').isVisible(),true,'model selection stays visible outside scene settings');
+  assert.equal(await page.locator('.llm-workspace').evaluate(e=>e.scrollWidth>e.clientWidth+1),false,'model card overflow '+width);
+  await page.locator('#llm-groups-open').click();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'overflow '+width);
   assert.equal(await page.locator('#models-dialog').evaluate(e=>e.scrollWidth>e.clientWidth+1),false,'model dialog overflow '+width);
   assert.equal(await page.locator('#model-groups select').count(),4);
@@ -23,13 +26,28 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=req
   assert.equal(await page.evaluate(()=>yanceTown.options.model),'price');
   await page.locator('#tab-comparison').click();assert.ok(await page.locator('#stats svg').count()>0);
  }
- await page.locator('#tab-world').click();await page.locator('#visitor-select').selectOption('1');await page.locator('#models-open').click();
+ await page.locator('#tab-world').click();await page.locator('#visitor-select').selectOption('1');
+ let modelCalls=0;page.on('request',r=>{if(r.url().endsWith('/api/agent-response'))modelCalls++});
+ await page.locator('#workspace-model').selectOption('qwen-plus');
+ assert.equal(await page.locator('#llm-badge').textContent(),'待连接服务');
+ assert.match(await page.locator('#observer-model-label').textContent(),/qwen-plus.*跟随人群/);
+ assert.equal(await page.evaluate(()=>Object.values(ZhiyanInference.snapshot().groups).filter(v=>v==='qwen-plus').length),4);
+ assert.equal(await page.locator('#scene-model-mode').count(),0,'remove the misleading engine switch');
+ await page.locator('.scene-display').evaluate(e=>e.open=true);await page.locator('#scene-model').selectOption('service');
+ assert.equal(await page.locator('#workspace-model').inputValue(),'qwen-plus','behavior preference does not change LLM assignment');
+ await page.locator('.scene-display').evaluate(e=>e.open=false);await page.locator('#workspace-model').selectOption('rules');
+ await page.locator('#observer-model-open').click();assert.equal(await page.locator('#actor-model').isEnabled(),true);
+ await page.locator('#models-dialog [data-close]').click();
+ assert.equal(await page.evaluate(()=>document.activeElement.id),'observer-model-open','return focus to the entry point');
+ await page.locator('#llm-groups-open').click();
  const group=page.locator('#model-groups select').first();
  assert.equal(await group.locator('option').count(),31);
  await page.locator('#model-search').fill('DeepSeek');assert.equal(await group.locator('option').count(),4);
  await group.selectOption('deepseek-chat');
  await page.locator('#model-search').fill('Claude');assert.equal(await group.inputValue(),'deepseek-chat','filter must preserve assignment');
  await page.locator('#actor-model').selectOption('claude-sonnet');
+ assert.match(await page.locator('#observer-model-label').textContent(),/claude-sonnet.*人物单独设置/);
+ assert.equal(await page.locator('#workspace-model').inputValue(),'','show group differences in the main card');
  await page.locator('#model-search').fill('');await page.locator('#model-source').selectOption('local');
  assert.equal(await group.locator('option[value="qwen-local"]').count(),1);
  assert.equal(await group.locator('option[value="gemini-flash"]').count(),0);
@@ -40,6 +58,14 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=req
  await page.locator('#model-search').fill('nonexistent-model');
  assert.equal(await group.locator('option').count(),2);assert.equal(await page.locator('#actor-model').inputValue(),'claude-sonnet');
  await page.locator('#model-search').fill('');
+ await page.locator('#models-dialog [data-close]').click();
+ await page.locator('#workspace-model').selectOption('deepseek-chat');
+ assert.match(await page.locator('#observer-model-label').textContent(),/claude-sonnet.*人物单独设置/,'group change must preserve personal override');
+ await page.locator('[data-module="public"]').click();assert.equal(await page.locator('#workspace-model').inputValue(),'rules');
+ await page.locator('[data-module="merchant"]').click();assert.equal(await page.locator('#workspace-model').inputValue(),'deepseek-chat');
+ await page.locator('#visitor-select').selectOption('1');await page.locator('#llm-connect-open').click();
+ assert.equal(await page.evaluate(()=>document.activeElement.id),'model-gateway');
+ assert.equal(modelCalls,0,'selection must not issue model calls');
  await page.route('**/api/models',route=>route.fulfill({json:{models:[{id:'private-research',label:'Private research model',vendor:'Internal lab',provider:'openai-compatible',model:'research-v7',source:'local',configured:true,status:'unverified'}]}}));
  await page.locator('#model-gateway').fill(new URL(base).origin);await page.locator('#model-connect').click();
  await page.waitForFunction(()=>document.querySelector('#gateway-status').textContent.includes('网关已连接'));

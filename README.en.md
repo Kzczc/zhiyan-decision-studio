@@ -60,7 +60,7 @@ Configure your accessible model IDs in [models.example.json](models.example.json
 
 The editable catalogue includes **30 example entries across 17 families or gateways**. Search by name, filter by family and deployment, assign group defaults and override individual people. Add entries to the registry and reconnect without changing the frontend. Replace placeholder IDs and set `requiresModelId` to `false` before use.
 
-In **模型与接入**, connect the local gateway. Example IDs are configuration samples, not availability guarantees. Configured does not mean a provider call has succeeded. Keys never enter the website.
+Use the **AI 模型** card above the map to choose a group default, or assign each group separately. Connect the model service, select a map participant and open the model settings beside their profile to ask a question. Scene behavior preferences are separate rule settings. Example IDs are configuration samples, not availability guarantees. Configured does not mean a provider call has succeeded. Keys never enter the website.
 
 [API and configuration →](API.md)
 

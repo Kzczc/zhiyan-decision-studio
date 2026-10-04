@@ -107,7 +107,7 @@
       this.onTick=typeof onTick==='function'?onTick:()=>{};
       this.onCamera=typeof onCamera==='function'?onCamera:()=>{};
       this.onPan=typeof onPan==='function'?onPan:()=>{};
-      this.options={module:'merchant',mapId:'merchant-riverside',segments:DEFAULT_SEGMENTS.map(s=>({...s})),scheme:'open',coupon:8,memberTarget:'all',coverage:1,memberShare:.4,weights:[35,25,25,15],duration:14,conversion:.18,count:32,groupRates:null,lighting:'auto',environment:'clear',context:'',modelMode:'local',model:'balanced',agentProfile:'representative',layout:'street',facilities:'standard',flow:'steady',resourceActive:true,guideSteps:2,supportAgents:4};
+      this.options={module:'merchant',mapId:'merchant-riverside',segments:DEFAULT_SEGMENTS.map(s=>({...s})),scheme:'open',coupon:8,memberTarget:'all',coverage:1,memberShare:.4,weights:[35,25,25,15],duration:14,conversion:.18,count:32,groupRates:null,lighting:'auto',environment:'clear',context:'',model:'balanced',agentProfile:'representative',layout:'street',facilities:'standard',flow:'steady',resourceActive:true,guideSteps:2,supportAgents:4};
       if(['clear','rain','autumn'].includes(environment))this.options.environment=environment;
       this._mapLabels=[];this._labels=[];
       this._progress=0;this._playing=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -171,7 +171,7 @@
         groupRates:Array.isArray(o.groupRates)&&o.groupRates.length===4&&o.groupRates.every(n=>Number.isFinite(+n))?o.groupRates.map(n=>clamp(+n,0,1)):o.groupRates===null?null:old.groupRates,
         lighting:['auto','day','night'].includes(o.lighting)?o.lighting:old.lighting,
         environment:['clear','rain','autumn'].includes(o.environment)?o.environment:old.environment,
-        context:typeof o.context==='string'?o.context.slice(0,120):old.context||'',mapId:MAPS.get(o.mapId||old.mapId,THEMES[o.module]?o.module:old.module).id,modelMode:o.modelMode==='api'?'api':'local',model:['balanced','price','service'].includes(o.model)?o.model:old.model||'balanced',agentProfile:['representative','diverse','stress'].includes(o.agentProfile)?o.agentProfile:old.agentProfile||'representative',layout:['street','campus','square'].includes(o.layout)?o.layout:old.layout||'street',facilities:['standard','active','service'].includes(o.facilities)?o.facilities:old.facilities||'standard',flow:['steady','peak','spread'].includes(o.flow)?o.flow:old.flow||'steady',
+        context:typeof o.context==='string'?o.context.slice(0,120):old.context||'',mapId:MAPS.get(o.mapId||old.mapId,THEMES[o.module]?o.module:old.module).id,model:['balanced','price','service'].includes(o.model)?o.model:old.model||'balanced',agentProfile:['representative','diverse','stress'].includes(o.agentProfile)?o.agentProfile:old.agentProfile||'representative',layout:['street','campus','square'].includes(o.layout)?o.layout:old.layout||'street',facilities:['standard','active','service'].includes(o.facilities)?o.facilities:old.facilities||'standard',flow:['steady','peak','spread'].includes(o.flow)?o.flow:old.flow||'steady',
         resourceActive:typeof o.resourceActive==='boolean'?o.resourceActive:old.resourceActive,
         guideSteps:o.guideSteps!=null&&Number.isFinite(+o.guideSteps)?clamp(Math.round(+o.guideSteps),1,5):old.guideSteps,
         supportAgents:o.supportAgents!=null&&Number.isFinite(+o.supportAgents)?clamp(Math.round(+o.supportAgents),0,50):old.supportAgents
