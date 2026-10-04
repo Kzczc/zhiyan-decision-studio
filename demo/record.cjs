@@ -17,7 +17,7 @@ const stamp=ms=>{ms=Math.max(0,Math.round(ms));return [Math.floor(ms/3600000),Ma
  await Promise.all([page.evaluate(()=>document.fonts.ready),frame.evaluate(()=>document.fonts.ready)]);
  await frame.evaluate(()=>{yanceTown.setPlaying(false)});
  const started=Date.now();
- const cue=async(title,cn,en)=>{if(chapters.length)chapters.at(-1).endMs=Date.now()-started;chapters.push({title,cn,en,startMs:Date.now()-started});await page.evaluate(({title,cn,en,n})=>{document.querySelector('#chapter').textContent=title;document.querySelector('#cn').textContent=cn;document.querySelector('#en').textContent=en;document.querySelector('#bar').style.width=Math.min(100,n*5)+'%'},{title,cn,en,n:chapters.length});console.log('SHOT '+title)};
+ const cue=async(title,cn,en)=>{if(chapters.length)chapters.at(-1).endMs=Date.now()-started;chapters.push({title,cn,en,startMs:Date.now()-started});await page.evaluate(({title,cn,en,n})=>{document.querySelector('#focus').style.opacity=0;document.querySelector('#chapter').textContent=title;document.querySelector('#cn').textContent=cn;document.querySelector('#en').textContent=en;document.querySelector('#bar').style.width=Math.min(100,n*5)+'%'},{title,cn,en,n:chapters.length});console.log('SHOT '+title)};
  const fade=async action=>{await page.evaluate(()=>{document.querySelector('#screen').style.opacity='.18';document.querySelector('#focus').style.opacity=0});await wait(230);await action();await page.evaluate(()=>document.querySelector('#screen').style.opacity=1);await wait(250)};
  const scroll=async selector=>{await frame.locator(selector).first().evaluate(el=>el.scrollIntoView({behavior:'smooth',block:'start'}));await page.waitForTimeout(700)};
  const click=async s=>{await frame.locator(s).first().click();await wait(200)};
@@ -42,8 +42,8 @@ const stamp=ms=>{ms=Math.max(0,Math.round(ms));return [Math.floor(ms/3600000),Ma
  await scroll('.observer');await frame.locator('#visitor-select').selectOption('1');await focus('.observer');await wait(4500);
  await cue('05 / FOLLOW','高亮路径与跟随镜头，让行为可以被观察。','Highlighted routes and a following camera make behavior visible.');
  await click('#follow-observer');await fade(()=>scroll('.world-canvas'));await frame.evaluate(()=>yanceTown.setPlaying(true));await wait(5000);await frame.evaluate(()=>{yanceTown.setPlaying(false);yanceTown.setFollowing(false);yanceTown.resetCamera()});
- await cue('06 / MULTI-MODEL','Gemini、Claude、Llama：人群默认，人物可覆盖。','Gemini, Claude, Llama: group defaults with individual overrides.');
- await fade(()=>click('#models-open'));await frame.locator('#model-groups select').first().selectOption('gemini-flash');await frame.locator('#model-groups select').nth(1).selectOption('claude-sonnet');await snap('03-models');await wait(4500);
+ await cue('06 / MULTI-MODEL','多家云端与本地模型：统一路由，自由分配。','Cloud and local model families: one registry, flexible assignment.');
+ await fade(()=>click('#models-open'));await frame.locator('#model-search').fill('DeepSeek');await frame.locator('#model-groups select').first().selectOption('deepseek-chat');await wait(1200);await frame.locator('#model-search').fill('Claude');await frame.locator('#model-groups select').nth(1).selectOption('claude-sonnet');await wait(1200);await frame.locator('#model-search').fill('');await frame.locator('#model-catalog-status').scrollIntoViewIfNeeded();await snap('03-models');await wait(2800);
  await cue('06 / CONNECTION','本地或云端，使用服务端配置；未连接不会冒充成功。','Local or cloud, configured server-side. Unconnected models stay unverified.');
  await click('#model-connect');await frame.waitForFunction(()=>document.querySelector('#gateway-status').textContent.includes('网关已连接'));await focus('#gateway-status');await wait(4300);
  await cue('06 / EXPLANATION','解释有来源；业务指标与生成文本分开呈现。','Explanations show their source, separately from business metrics.');
@@ -71,6 +71,6 @@ const stamp=ms=>{ms=Math.max(0,Math.round(ms));return [Math.floor(ms/3600000),Ma
  const video=page.video(),videoPath=video?await video.path():null;await context.close();await browser.close();
  if(!fast){fs.copyFileSync(videoPath,path.join(out,'zhiyan-demo-bilingual.webm'));const executable=process.env.FFMPEG_PATH;if(executable){const converted=spawnSync(executable,['-y','-i',path.join(out,'zhiyan-demo-bilingual.webm'),'-c:v','libx264','-crf','17','-preset','medium','-pix_fmt','yuv420p','-movflags','+faststart',path.join(media,'zhiyan-demo.mp4')],{encoding:'utf8'});if(converted.status!==0)throw Error(converted.stderr.slice(-2000));}}
  const vtt=['WEBVTT',''];for(const c of chapters)vtt.push(stamp(c.startMs)+' --> '+stamp(c.endMs)+'\n'+c.cn+'\n'+c.en+'\n');
- fs.writeFileSync(path.join(media,'zhiyan-demo.vtt'),vtt.join('\n'));fs.writeFileSync(path.join(out,'chapters.json'),JSON.stringify({durationMs:Date.now()-started,chapters,errors},null,2));
+ if(!fast)fs.writeFileSync(path.join(media,'zhiyan-demo.vtt'),vtt.join('\n'));fs.writeFileSync(path.join(out,fast?'check-chapters.json':'chapters.json'),JSON.stringify({durationMs:Date.now()-started,chapters,errors},null,2));
  console.log(JSON.stringify({ok:true,dryRun:fast,chapters:chapters.length,durationMs:Date.now()-started,output:media}));
 })().catch(error=>{console.error(error);process.exit(1)});

@@ -1,17 +1,66 @@
 {
+  "_note": "Examples only. Replace model IDs with account-authorized or installed versions. Set requiresModelId=false after filling placeholders.",
   "models": [
+    {
+      "id": "gpt-4.1",
+      "label": "OpenAI · GPT-4.1",
+      "vendor": "OpenAI",
+      "provider": "openai-compatible",
+      "model": "gpt-4.1",
+      "source": "cloud",
+      "baseUrl": "https://api.openai.com/v1",
+      "keyEnv": "OPENAI_API_KEY",
+      "tokenParameter": "max_completion_tokens"
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "label": "OpenAI · GPT-4.1 mini",
+      "vendor": "OpenAI",
+      "provider": "openai-compatible",
+      "model": "gpt-4.1-mini",
+      "source": "cloud",
+      "baseUrl": "https://api.openai.com/v1",
+      "keyEnv": "OPENAI_API_KEY",
+      "tokenParameter": "max_completion_tokens"
+    },
+    {
+      "id": "o3",
+      "label": "OpenAI · o3",
+      "vendor": "OpenAI",
+      "provider": "openai-compatible",
+      "model": "o3",
+      "source": "cloud",
+      "baseUrl": "https://api.openai.com/v1",
+      "keyEnv": "OPENAI_API_KEY",
+      "tokenParameter": "max_completion_tokens",
+      "maxOutputTokens": 4096
+    },
     {
       "id": "gemini-flash",
       "label": "Gemini · Flash",
+      "vendor": "Gemini",
       "provider": "gemini",
       "model": "gemini-2.5-flash",
       "source": "cloud",
       "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
-      "keyEnv": "GEMINI_API_KEY"
+      "keyEnv": "GEMINI_API_KEY",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "gemini-pro",
+      "label": "Gemini · Pro",
+      "vendor": "Gemini",
+      "provider": "gemini",
+      "model": "gemini-2.5-pro",
+      "source": "cloud",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "keyEnv": "GEMINI_API_KEY",
+      "maxOutputTokens": 4096
     },
     {
       "id": "claude-sonnet",
       "label": "Claude · Sonnet",
+      "vendor": "Claude",
       "provider": "anthropic",
       "model": "claude-sonnet-4-5",
       "source": "cloud",
@@ -19,28 +68,242 @@
       "keyEnv": "ANTHROPIC_API_KEY"
     },
     {
+      "id": "claude-opus",
+      "label": "Claude · Opus",
+      "vendor": "Claude",
+      "provider": "anthropic",
+      "model": "claude-opus-4-1",
+      "source": "cloud",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "keyEnv": "ANTHROPIC_API_KEY"
+    },
+    {
+      "id": "claude-haiku",
+      "label": "Claude · Haiku",
+      "vendor": "Claude",
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "source": "cloud",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "keyEnv": "ANTHROPIC_API_KEY"
+    },
+    {
+      "id": "deepseek-chat",
+      "label": "DeepSeek · Chat",
+      "vendor": "DeepSeek",
+      "provider": "openai-compatible",
+      "model": "deepseek-chat",
+      "source": "cloud",
+      "baseUrl": "https://api.deepseek.com/v1",
+      "keyEnv": "DEEPSEEK_API_KEY"
+    },
+    {
+      "id": "deepseek-reasoner",
+      "label": "DeepSeek · Reasoner",
+      "vendor": "DeepSeek",
+      "provider": "openai-compatible",
+      "model": "deepseek-reasoner",
+      "source": "cloud",
+      "baseUrl": "https://api.deepseek.com/v1",
+      "keyEnv": "DEEPSEEK_API_KEY",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "qwen-plus",
+      "label": "Qwen · Plus",
+      "vendor": "Qwen",
+      "provider": "openai-compatible",
+      "model": "qwen-plus",
+      "source": "cloud",
+      "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "keyEnv": "DASHSCOPE_API_KEY"
+    },
+    {
+      "id": "qwen-max",
+      "label": "Qwen · Max",
+      "vendor": "Qwen",
+      "provider": "openai-compatible",
+      "model": "qwen-max",
+      "source": "cloud",
+      "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "keyEnv": "DASHSCOPE_API_KEY"
+    },
+    {
+      "id": "glm-4.5",
+      "label": "GLM · GLM-4.5",
+      "vendor": "GLM",
+      "provider": "openai-compatible",
+      "model": "glm-4.5",
+      "source": "cloud",
+      "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+      "keyEnv": "ZHIPU_API_KEY"
+    },
+    {
+      "id": "kimi-k2",
+      "label": "Kimi · K2",
+      "vendor": "Kimi",
+      "provider": "openai-compatible",
+      "model": "kimi-k2-0905-preview",
+      "source": "cloud",
+      "baseUrl": "https://api.moonshot.cn/v1",
+      "keyEnv": "MOONSHOT_API_KEY"
+    },
+    {
+      "id": "minimax",
+      "label": "MiniMax · M2",
+      "vendor": "MiniMax",
+      "provider": "openai-compatible",
+      "model": "MiniMax-M2",
+      "source": "cloud",
+      "baseUrl": "https://api.minimax.io/v1",
+      "keyEnv": "MINIMAX_API_KEY",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "doubao-deployment",
+      "label": "Doubao · Ark deployment",
+      "vendor": "Doubao",
+      "provider": "openai-compatible",
+      "model": "YOUR_DEPLOYMENT_ID",
+      "source": "cloud",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+      "keyEnv": "ARK_API_KEY",
+      "requiresModelId": true
+    },
+    {
+      "id": "mistral-large",
+      "label": "Mistral · Large",
+      "vendor": "Mistral",
+      "provider": "openai-compatible",
+      "model": "mistral-large-latest",
+      "source": "cloud",
+      "baseUrl": "https://api.mistral.ai/v1",
+      "keyEnv": "MISTRAL_API_KEY"
+    },
+    {
+      "id": "mistral-small",
+      "label": "Mistral · Small",
+      "vendor": "Mistral",
+      "provider": "openai-compatible",
+      "model": "mistral-small-latest",
+      "source": "cloud",
+      "baseUrl": "https://api.mistral.ai/v1",
+      "keyEnv": "MISTRAL_API_KEY"
+    },
+    {
+      "id": "grok-4",
+      "label": "Grok · Grok 4",
+      "vendor": "Grok",
+      "provider": "openai-compatible",
+      "model": "grok-4",
+      "source": "cloud",
+      "baseUrl": "https://api.x.ai/v1",
+      "keyEnv": "XAI_API_KEY"
+    },
+    {
+      "id": "openrouter",
+      "label": "OpenRouter · Model routing",
+      "vendor": "OpenRouter",
+      "provider": "openai-compatible",
+      "model": "YOUR_ORGANIZATION/MODEL_ID",
+      "source": "cloud",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "keyEnv": "OPENROUTER_API_KEY",
+      "requiresModelId": true
+    },
+    {
       "id": "llama-local",
       "label": "Llama · Ollama",
+      "vendor": "Llama",
       "provider": "openai-compatible",
       "model": "llama3.2:3b",
       "source": "local",
       "baseUrl": "http://127.0.0.1:11434/v1"
     },
     {
-      "id": "qwen-local",
-      "label": "Qwen · Ollama",
+      "id": "llama-70b",
+      "label": "Llama · Ollama",
+      "vendor": "Llama",
       "provider": "openai-compatible",
-      "model": "qwen3:8b",
+      "model": "llama3.3:70b",
       "source": "local",
       "baseUrl": "http://127.0.0.1:11434/v1"
     },
     {
+      "id": "qwen-local",
+      "label": "Qwen · Ollama",
+      "vendor": "Qwen",
+      "provider": "openai-compatible",
+      "model": "qwen3:8b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "qwen-32b",
+      "label": "Qwen · Ollama",
+      "vendor": "Qwen",
+      "provider": "openai-compatible",
+      "model": "qwen3:32b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "deepseek-local",
+      "label": "DeepSeek · Ollama",
+      "vendor": "DeepSeek",
+      "provider": "openai-compatible",
+      "model": "deepseek-r1:8b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "maxOutputTokens": 4096
+    },
+    {
+      "id": "gemma-local",
+      "label": "Gemma · Ollama",
+      "vendor": "Gemma",
+      "provider": "openai-compatible",
+      "model": "gemma3:4b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1"
+    },
+    {
+      "id": "phi-local",
+      "label": "Phi · Ollama",
+      "vendor": "Phi",
+      "provider": "openai-compatible",
+      "model": "phi4",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1"
+    },
+    {
+      "id": "granite-local",
+      "label": "Granite · Ollama",
+      "vendor": "Granite",
+      "provider": "openai-compatible",
+      "model": "granite3.3:8b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1"
+    },
+    {
+      "id": "llama-vllm",
+      "vendor": "Llama",
+      "label": "Llama · vLLM",
+      "provider": "openai-compatible",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:8000/v1"
+    },
+    {
       "id": "custom-compatible",
+      "vendor": "Custom",
       "label": "Custom · LM Studio / API",
       "provider": "openai-compatible",
-      "model": "your-installed-model-id",
+      "model": "YOUR_INSTALLED_MODEL_ID",
       "source": "local",
-      "baseUrl": "http://127.0.0.1:1234/v1"
+      "baseUrl": "http://127.0.0.1:1234/v1",
+      "requiresModelId": true
     }
   ]
 }

@@ -30,7 +30,7 @@
 
 - **12 张地图**：道路、建筑与设施配置；支持天气、时段和客流节奏。
 - **可追踪人物**：观察画像、当前活动、目的地和行动路线，支持定位与跟随。
-- **模型路由**：人群默认模型 + 单个人物覆盖；Gemini、Claude、Llama、Qwen 或自定义兼容服务。
+- **开放模型目录**：30 个示例型号、17 个模型家族或接入入口；支持名称搜索、提供商与本地／云端筛选，人群默认模型 + 单个人物覆盖。
 - **清晰的对照**：统一周期、人群与预算，比较业务指标、资源边界与验证计划。
 - **可交付研究**：保存与恢复场景；导出 HTML 报告、CSV 和打印版本。
 
@@ -68,9 +68,13 @@ python -m http.server 8000 --directory docs
 | --- | --- | --- |
 | Gemini 原生协议 | Google Gemini | `GEMINI_API_KEY` |
 | Messages 原生协议 | Anthropic Claude | `ANTHROPIC_API_KEY` |
-| Chat Completions 兼容协议 | Ollama、LM Studio、云端兼容服务 | 注册表中配置 `keyEnv` |
+| Chat Completions 兼容协议 | OpenAI、DeepSeek、Qwen、GLM、Kimi、MiniMax、豆包、Mistral、Grok | 注册表中配置 `keyEnv` |
+| 本地兼容服务 | Llama、Qwen、DeepSeek-R1、Gemma、Phi、Granite；Ollama / vLLM / LM Studio | 按本地服务要求配置 |
+| 聚合与自定义入口 | OpenRouter 或自建兼容服务 | 自定义 `baseUrl`、`model` 和 `keyEnv` |
 
-示例型号用于说明配置方式，不保证账户权限或模型在线。界面区分“已配置”“未验证”“调用成功”；没有密钥时仍可使用本地规则。
+目录可以持续扩展：在注册表中添加型号，重新检查连接即可，无需修改前端。版本、部署名与服务地址由自己的账户决定；占位条目须填写实际型号，并将 `requiresModelId` 改为 `false`。
+
+示例型号用于说明配置方式，不保证账户权限或模型在线。配置就绪不等于调用成功；没有密钥时仍可使用本地规则。
 
 [完整接口与配置说明 →](API.md)
 

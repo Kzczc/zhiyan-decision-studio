@@ -1,77 +1,77 @@
 WEBVTT
 
-00:00:00.878 --> 00:00:06.105
+00:00:00.829 --> 00:00:06.092
 一个方案上线前，能否先看见它会改变谁？
 Before a strategy goes live, can we see who it changes?
 
-00:00:06.105 --> 00:00:12.625
+00:00:06.092 --> 00:00:12.608
 智演，把策略、人群与资源约束放进同一场景。
 ZHIYAN brings strategies, people and resource constraints into one scene.
 
-00:00:12.625 --> 00:00:18.350
+00:00:12.608 --> 00:00:18.337
 全客群优惠，还是会员定向？先比较，再试点。
 Broad discounts or member offers? Compare first, then pilot.
 
-00:00:18.350 --> 00:00:25.197
+00:00:18.337 --> 00:00:25.155
 输入背景，确认地图、客流与设施识别结果。
 Describe the setting. Review the map, traffic and facilities.
 
-00:00:25.197 --> 00:00:31.734
+00:00:25.155 --> 00:00:31.726
 地图切换会重建道路、设施和人物路线。
 Maps change streets, facilities and participant routes.
 
-00:00:31.734 --> 00:00:37.505
+00:00:31.726 --> 00:00:37.513
 每位人物都有画像、当前位置与目的地。
 Each participant has a profile, a position and a destination.
 
-00:00:37.505 --> 00:00:44.436
+00:00:37.513 --> 00:00:44.530
 高亮路径与跟随镜头，让行为可以被观察。
 Highlighted routes and a following camera make behavior visible.
 
-00:00:44.436 --> 00:00:49.955
-Gemini、Claude、Llama：人群默认，人物可覆盖。
-Gemini, Claude, Llama: group defaults with individual overrides.
+00:00:44.530 --> 00:00:50.972
+多家云端与本地模型：统一路由，自由分配。
+Cloud and local model families: one registry, flexible assignment.
 
-00:00:49.955 --> 00:00:54.520
+00:00:50.972 --> 00:00:55.619
 本地或云端，使用服务端配置；未连接不会冒充成功。
 Local or cloud, configured server-side. Unconnected models stay unverified.
 
-00:00:54.520 --> 00:01:00.750
+00:00:55.619 --> 00:01:01.905
 解释有来源；业务指标与生成文本分开呈现。
 Explanations show their source, separately from business metrics.
 
-00:01:00.750 --> 00:01:06.917
+00:01:01.905 --> 00:01:08.124
 换一种行动，保留同一组比较条件。
 Change the action while keeping comparison conditions fixed.
 
-00:01:06.917 --> 00:01:11.479
+00:01:08.124 --> 00:01:12.748
 复制并命名自己的策略，原方案仍作参照。
 Create a named strategy while preserving the original alternatives.
 
-00:01:11.479 --> 00:01:18.924
+00:01:12.748 --> 00:01:20.212
 同时比较转化率、贡献毛利和优惠投入。
 Compare conversion, contribution margin and incentive spend together.
 
-00:01:18.924 --> 00:01:24.934
+00:01:20.212 --> 00:01:26.235
 看清主要人群、资源边界，再安排真实验证。
 Identify affected groups and resource limits before real-world validation.
 
-00:01:24.934 --> 00:01:31.448
+00:01:26.235 --> 00:01:32.785
 保存研究与报告，让讨论变成可复用的交付。
 Save the study and report so the analysis can be reused.
 
-00:01:31.448 --> 00:01:38.629
+00:01:32.785 --> 00:01:39.962
 公共服务：比较网点、开放时段与居民可达性。
 Public services: compare locations, opening hours and accessibility.
 
-00:01:38.629 --> 00:01:46.087
+00:01:39.962 --> 00:01:47.383
 企业增长：比较引导路径、激活与留存。
 Growth: compare onboarding paths, activation and retention.
 
-00:01:46.087 --> 00:01:52.090
+00:01:47.383 --> 00:01:53.402
 目标：大规模多智能体预实验，更快、更省、更可解释。
 Our goal: large-scale multi-agent pre-experiments that are faster, leaner and explainable.
 
-00:01:52.090 --> 00:01:56.600
+00:01:53.402 --> 00:01:57.920
 从预演中筛选方向，在真实实验中验证价值。
 Find a direction in simulation. Validate its value in a real experiment.

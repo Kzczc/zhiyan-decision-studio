@@ -10,6 +10,7 @@
 {
   "id": "my-claude",
   "label": "Claude / Research",
+  "vendor": "Claude",
   "provider": "anthropic",
   "model": "YOUR_AVAILABLE_MODEL_ID",
   "source": "cloud",
@@ -22,9 +23,21 @@
 
 本地 Llama / Qwen 可使用 Ollama 的 `http://127.0.0.1:11434/v1`；LM Studio 使用 `http://127.0.0.1:1234/v1`。本地服务可以省略 `keyEnv`。
 
+示例目录覆盖 30 个型号、17 个模型家族或接入入口。服务端注册表最多容纳 500 项，新增条目无需改前端；同一模型可注册不同部署并分配不同 `id`。
+
+| 字段 | 用途 |
+| --- | --- |
+| `vendor` | 提供商／模型家族名称，用于筛选与分组 |
+| `source` | `cloud` 或 `local`，表示部署位置 |
+| `requiresModelId` | 占位条目为 `true`；替换实际型号后改为 `false`，否则禁止调用 |
+| `tokenParameter` | 兼容协议默认 `max_tokens`；需要时设为 `max_completion_tokens` |
+| `maxOutputTokens` | 输出预算，默认 800，范围 1–16384；推理型号可配置更高预算 |
+
+运行 `node scripts/build-model-catalog.cjs` 可从示例注册表更新静态网站的目录。生成文件不包含密钥、环境变量名称或服务地址。连接网关后，页面自动使用网关注册表。
+
 ## GET /api/models
 
-返回无密钥的模型注册表：`id`、`label`、`provider`、`model`、`source`、`configured`、`status`。
+返回无密钥的模型注册表：`id`、`label`、`vendor`、`provider`、`model`、`source`、`configured`、`status`。
 “configured”仅表示配置就绪；实际提供商连通性在请求时验证。
 
 ## POST /api/agent-response
@@ -44,7 +57,7 @@
 - 400：JSON、人物字段、问题或型号无效；请求上限 16 KB。
 - 403：来源不允许。
 - 429：已有两个模型请求在处理。
-- 503：提供商密钥缺失。
+- 503：提供商密钥缺失，或仍使用待填写的型号占位条目。
 - 502：提供商报错、缺少文本或超过 30 秒。
 
 服务只监听本机 127.0.0.1。允许本机前端和 kzczc.github.io；不接受浏览器提交任意上游 URL。错误不会返回密钥或提供商完整响应。需要公网服务时，应另行加入用户认证、配额和访问审计。

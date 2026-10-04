@@ -54,9 +54,13 @@ Configure your accessible model IDs in [models.example.json](models.example.json
 
 - **Gemini**: native GenerateContent protocol; `GEMINI_API_KEY`.
 - **Claude**: native Messages protocol; `ANTHROPIC_API_KEY`.
-- **Llama / Qwen / custom**: Chat Completions through Ollama, LM Studio or a compatible cloud endpoint.
+- **Compatible cloud APIs**: OpenAI, DeepSeek, Qwen, GLM, Kimi, MiniMax, Doubao, Mistral and Grok.
+- **Local families**: Llama, Qwen, DeepSeek-R1, Gemma, Phi and Granite through Ollama, vLLM or LM Studio.
+- **Aggregators and custom endpoints**: OpenRouter or your own Chat Completions service.
 
-In **模型与接入**, connect the local gateway, assign a default model to each group and override individual people. Example IDs are configuration samples, not availability guarantees. Keys never enter the website.
+The editable catalogue includes **30 example entries across 17 families or gateways**. Search by name, filter by family and deployment, assign group defaults and override individual people. Add entries to the registry and reconnect without changing the frontend. Replace placeholder IDs and set `requiresModelId` to `false` before use.
+
+In **模型与接入**, connect the local gateway. Example IDs are configuration samples, not availability guarantees. Configured does not mean a provider call has succeeded. Keys never enter the website.
 
 [API and configuration →](API.md)
 

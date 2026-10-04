@@ -19,8 +19,10 @@ const server=http.createServer(async(req,res)=>{
   if(req.method!=='POST')return send(res,405,{error:'Use POST'});
   if(busy>=2)return send(res,429,{error:'Two requests already in progress'});
   let input;try{input=await json(req)}catch{return send(res,400,{error:'Invalid JSON or body exceeds 16 KB'})}
+  if(!input||typeof input!=='object'||Array.isArray(input))return send(res,400,{error:'Expected a JSON object'});
   let entry;try{entry=providers.registry().find(m=>m.id===input.model)}catch{return send(res,500,{error:'Invalid registry'})}
   if(!entry)return send(res,400,{error:'Unknown model'});
+  if(entry.requiresModelId)return send(res,503,{error:'Replace the example model ID in the server registry first'});
   if(entry.keyEnv&&!process.env[entry.keyEnv])return send(res,503,{error:'Provider key is not configured on the server'});
   if(!input.persona||typeof input.persona.name!=='string'||typeof input.question!=='string'||input.question.length>1200)return send(res,400,{error:'persona.name and question (max 1200 chars) are required'});
   busy++;

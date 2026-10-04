@@ -1,6 +1,6 @@
 /* ZHIYAN: one visual language from the city scene through analysis and reports. */
 #models-dialog{width:min(820px,calc(100% - 28px));max-height:90vh}
-#models-dialog .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
+#models-dialog .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:14px 0}
 #models-dialog label{display:grid;gap:8px;min-width:0;font-size:14px}
 #models-dialog select,#models-dialog input,#models-dialog textarea{width:100%;min-height:42px;font:inherit;border:1px solid #b8cec3;background:#fffefa;color:#294d49;padding:8px;border-radius:4px}
 #models-dialog .model-explainer,#gateway-status{font-size:14px;line-height:1.75}
@@ -8,8 +8,18 @@
 #model-answer:empty{display:none}
 .validation li::before{display:none}
 .scenario-bottom span svg,.effect-metric small svg,.stat small svg{flex-shrink:0}
-#models-dialog .dialog-body{padding:22px 28px}
-#models-dialog .dialog-header{padding:20px 28px}
+#models-dialog .dialog-body{padding:16px 28px}
+#models-dialog .dialog-header{padding:14px 28px}
+#models-dialog .dialog-header h2{font-family:var(--body);font-size:24px;font-weight:600;line-height:1.5}
+#models-dialog .model-explainer{margin:0 0 14px}
+.model-connection{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px}
+#models-dialog .model-connection .field{margin:0}
+#models-dialog .model-connection .button{min-height:42px}
+#models-dialog #gateway-status{margin:10px 0;font-size:13px}
+.model-filters{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;margin-top:12px}
+.model-add{font-size:13px;color:#48655c;margin:12px 0}
+.model-add p{line-height:1.8;overflow-wrap:anywhere}
+@media(max-width:650px){.model-filters{grid-template-columns:1fr}.model-filters select,.model-filters input{min-width:0}}
 #models-dialog hr{border:0;border-top:1px solid #cadbce;margin:22px 0}
 .model-builder{border-top:1px solid #c9d9ce;padding-top:10px}
 .model-builder-heading span{display:flex;align-items:center;gap:6px}
