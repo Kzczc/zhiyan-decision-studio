@@ -267,7 +267,8 @@
       const ranks=[0,1,2,3].map(g=>types.map((t,i)=>t===g?i:-1).filter(i=>i>=0).sort((a,b)=>rnd(a+60)-rnd(b+60)));
       const profileBias=this.options.agentProfile==='stress'?[.82,.95,1.12,1.08]:this.options.agentProfile==='diverse'?[.92,1.08,1.12,.88]:[1,1,1,1];
       const modelBias=this.options.model==='price'?[1.15,1.05,.92,.8]:this.options.model==='service'?[.88,.96,1.12,1.2]:[1,1,1,1];
-      const rates=this.options.groupRates||[0,1,2,3].map(g=>clamp(this.options.conversion*profileBias[g]*modelBias[g],0,.98));
+      const baseRates=this.options.groupRates||[0,1,2,3].map(()=>this.options.conversion);
+      const rates=baseRates.map((rate,g)=>clamp(rate*profileBias[g]*modelBias[g],0,1));
       const purchases=counts.map((n,g)=>Math.round(n*rates[g])),visits=counts.map((n,g)=>Math.max(purchases[g],Math.round(n*Math.min(.94,.27+rates[g]*1.4))));
       this.agents=Array.from({length:this.options.count},(_,i)=>{
         const type=types[i],start=Math.floor(rnd(i+4)*30),end=Math.floor(rnd(i+24)*30),walk=[nodes[start]];
@@ -286,7 +287,7 @@
         const dwell=.45+rnd(i+803)*1.15,available=Math.max(0,windowEnd-windowStart-dwell-.24),arrival=peak?rnd(i+401)*Math.max(.5,available*.28):spread?rnd(i+401)*available:fract((i+1)*.61803398875)*available,visitHour=windowStart+.12+arrival,completionHour=visitHour+dwell;
         const span=this.options.duration*24-8,visitAt=(visitHour-8)/span,purchaseAt=(completionHour-8)/span,exposedAt=Math.max(0,(visitHour-8-(1+rnd(i+43)*2))/span);
         const groupRank=ranks[type].indexOf(i);
-        const sampleName=this.options.agentProfile==='stress'?(i%2?'压力样本':'边界样本'):this.options.agentProfile==='diverse'?(i%2?'扩展样本':'代表样本'):NAMES[i%NAMES.length];
+        const sampleName=NAMES[i%NAMES.length];
         return{id:i+1,name:sampleName+(i>=NAMES.length?' '+(Math.floor(i/NAMES.length)+1):''),segmentIndex:type,segment:this.options.segments[type].name,member:type>=2,coat:shade(this.options.segments[type].color,[0,-10,9][i%3]),skin:['#EDC69A','#CCA07C','#E1B28B','#B98D70'][i%4],hair:['#574D44','#8A6849','#434D4A','#6F5549'][i%4],phase:rnd(i+520),lane:((i*3)%7-3)*1.7,exposedAt,visitAt,purchaseAt,visits:groupRank<visits[type],buys:groupRank<purchases[type],destination,incoming,outgoing:route(destination,end),walk};
       });
       if(this.selected!=null&&!this.agents.some(a=>a.id===this.selected)){this.selected=null;this.onSelect(null);}

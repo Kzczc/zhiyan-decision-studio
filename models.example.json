@@ -1,0 +1,46 @@
+{
+  "models": [
+    {
+      "id": "gemini-flash",
+      "label": "Gemini · Flash",
+      "provider": "gemini",
+      "model": "gemini-2.5-flash",
+      "source": "cloud",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "keyEnv": "GEMINI_API_KEY"
+    },
+    {
+      "id": "claude-sonnet",
+      "label": "Claude · Sonnet",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5",
+      "source": "cloud",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "keyEnv": "ANTHROPIC_API_KEY"
+    },
+    {
+      "id": "llama-local",
+      "label": "Llama · Ollama",
+      "provider": "openai-compatible",
+      "model": "llama3.2:3b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1"
+    },
+    {
+      "id": "qwen-local",
+      "label": "Qwen · Ollama",
+      "provider": "openai-compatible",
+      "model": "qwen3:8b",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:11434/v1"
+    },
+    {
+      "id": "custom-compatible",
+      "label": "Custom · LM Studio / API",
+      "provider": "openai-compatible",
+      "model": "your-installed-model-id",
+      "source": "local",
+      "baseUrl": "http://127.0.0.1:1234/v1"
+    }
+  ]
+}

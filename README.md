@@ -1,69 +1,109 @@
-# 智演 ZHIYAN
+<div align="center">
 
-> 把策略放进城市，先看见下一步。
+<img src="docs/assets/logo-horizontal.svg" width="310" alt="智演 ZHIYAN">
 
-智演是一套面向经营、增长与公共服务团队的决策��演工作台。它把候选策略、人群画像、城市空间和资源约束放进同一个可观察的场景，帮助团队在真实试点前比较路径、发现边界、形成验证计划。
+# 智演 · 让策略先经过预演
 
-[进入产品](https://kzczc.github.io/zhiyan-decision-studio/) · [观看 Demo 说明](DEMO-RECORDING.md) · [旧版兼容地址](https://kzczc.github.io/yance-decision-studio/)
+**更快探索 · 更省试错 · 更可解释**
 
-![智演城市预演场景](docs/assets/brand-city.png)
+[**中文**](README.md) ｜ [English](README.en.md)
 
-## 为什么是智演
+[🌐 在线体验](https://kzczc.github.io/zhiyan-decision-studio/) · [🎬 产品演示](https://kzczc.github.io/zhiyan-decision-studio/demo.html) · [模型接入](API.md) · [关于智演](https://kzczc.github.io/zhiyan-decision-studio/brand.html)
 
-很多决策工具只能告诉团队过去发生了什么，讨论会却必须猜测方案落地后会改变谁、改变哪条路径、消耗多少资源。智演把一个问题转化为可观察的城市情境：同一组人群、同一段周期、不同的行动方案，在同一张地图上进行对照。
+</div>
 
-- 更快：先用可重复的情境预演缩小方案范围。
-- 更省：在真实 A/B 测试或现场试点前发现资源与体验风险。
-- 更可解释：把指标变化连接到人群、设施、路线与行为反馈。
+<a href="https://kzczc.github.io/zhiyan-decision-studio/demo.html"><img src="docs/assets/demo-cover.png" width="100%" alt="观看智演双语产品演示"></a>
 
-智演的长期技术方向是将策略放入可校准的大规模多智能体系统中，比较反事实方案并把结果回流到真实实验。目前公开 Demo 是完整的前端产品体验，使用透明、确定性的假设模型，不伪装成已经连接真实数据或后端智能体推理。
+**智演 ZHIYAN** 面向企业增长、商户经营和公共服务决策。将候选策略、人群画像与资源约束放进可观察的城市场景，在真实试点前比较方案，形成下一步验证计划。
 
-## 三个 Lab
+> 技术目标：将候选策略放入可校准的大规模多智能体系统。当前版本提供规则驱动的场景预演，以及 Gemini、Claude 和 OpenAI 兼容模型的逐人物解释接口。速度与成本优势是产品目标，尚未发布对照基准。
 
-| Lab | 面向团队 | 示例问题 |
-| --- | --- | --- |
-| **PolicyLab** | 政府与公共机构 | 服务网点、开放时段与居民可达性如何变化？ |
-| **GrowthLab** | 企业与业务团队 | 新用户引导、产品体验与激活留存如何比较？ |
-| **BizLab** | 店主与个体经营者 | 新品促销如何影响客流、订单与贡献毛利？ |
+## 一套工作台，三类决策
 
-每个 Lab 提供 4 张独立地图，共 12 张；道路、设施、人群路线和场景标签会随地图切换。
+| | 产品 | 使用场景 |
+| :---: | --- | --- |
+| <img src="docs/assets/lab-growth.svg" width="70" alt=""> | **GrowthLab · 企业增长** | 引导流程、产品体验、激活与留存 |
+| <img src="docs/assets/lab-merchant.svg" width="70" alt=""> | **BizLab · 商户经营** | 促销、人群响应、订单与贡献毛利 |
+| <img src="docs/assets/lab-public.svg" width="70" alt=""> | **PolicyLab · 公共服务** | 网点、开放时段与居民可达性 |
 
-## 主要能力
+### 构建情境 → 观察人物 → 比较策略 → 验证行动
 
-- 情境构成：输入背景，识别地图、天气、光照、客流节奏和设施倾向。
-- 城市预演：像素城市、建筑、设施、人物和路线组成可观察场景。
-- 人物观察：选择画像、查看行为与目的地、定位并跟随对象。
-- 策略比较：对照方案、指标卡、结果解读、资源边界和验证计划。
-- 研究记录：本地保存完整情境、策略、人群、地图和界面偏好。
-- 导出交付：HTML 报告、CSV 指标表和打印版本。
+- **12 张地图**：道路、建筑与设施配置；支持天气、时段和客流节奏。
+- **可追踪人物**：观察画像、当前活动、目的地和行动路线，支持定位与跟随。
+- **模型路由**：人群默认模型 + 单个人物覆盖；Gemini、Claude、Llama、Qwen 或自定义兼容服务。
+- **清晰的对照**：统一周期、人群与预算，比较业务指标、资源边界与验证计划。
+- **可交付研究**：保存与恢复场景；导出 HTML 报告、CSV 和打印版本。
 
-## Demo 录制
+## 🎬 产品演示
 
-主 Demo 采用“问题 → 情境预演 → 方案比较 → 下一步验证”的结构，以 BizLab 滨水周末集市为主线，并补充 PolicyLab 与 GrowthLab 镜头。
+[**观看高清双语 Demo →**](https://kzczc.github.io/zhiyan-decision-studio/demo.html)
 
-- 高清视频：work/recordings/zhiyan-demo-3min.webm
-- 字幕文件：work/recordings/zhiyan-demo-subtitles.vtt
-- 章节索引：work/recordings/zhiyan-demo-chapters.json
-- 分镜与旁白：DEMO-RECORDING.md
+从一个商户促销问题开始，展示情境、人物、模型分配、方案比较与报告，再补充增长和公共服务场景。字幕使用中英双语，录制工具独立于网站。
+
+[录制说明](DEMO-RECORDING.md) · [独立录制源码](demo/record.cjs)
 
 ## 快速开始
 
-    node work/serve.cjs
+需要 **Node.js 20+**，运行时没有第三方依赖。
 
-然后打开 http://127.0.0.1:61320/。静态入口是 docs/index.html，无需构建工具。
+```bash
+git clone https://github.com/Kzczc/zhiyan-decision-studio.git
+cd zhiyan-decision-studio
+npm start
+```
 
-## 项目结构
+访问 **http://127.0.0.1:61321/**。只查看静态网站也可运行：
 
-- docs/app.js：导航、策略编辑、情境设置、人物观察、研究保存与导出。
-- docs/scenarios.js：三类 Lab 的场景参数与确定性测算。
-- docs/maps.js：12 张地图的路网、建筑与设施配置。
-- docs/town.js：城市渲染、人物、路径、光照、相机和动画。
-- docs/assets/：字体、品牌图形、Lab 插画、地图与许可文件。
+```bash
+python -m http.server 8000 --directory docs
+```
 
-## 接入边界
+## 多模型接入
 
-当前公开版本是静态前端，研究记录保存在浏览器 localStorage。真实项目接入时，可以把场景配置、人物画像、策略参数和仿真任务提交到后端 API，再返回任务状态、轨迹、聚合指标和可解释事件；接入真实数据前，需要授权、脱敏、模型校准和现场验证。
+1. 将 [models.example.json](models.example.json) 复制为自己的模型注册表，填写账户可用或本地已安装的**准确型号**。
+2. 通过环境变量 `ZHIYAN_MODELS_FILE` 指定配置；云服务密钥仅设置在服务端环境中。
+3. 启动服务器，在工作台“模型与接入”检查连接，然后为人群或选中人物分配型号。
 
-## 素材与许可
+| 连接器 | 服务 | 密钥环境变量 |
+| --- | --- | --- |
+| Gemini 原生协议 | Google Gemini | `GEMINI_API_KEY` |
+| Messages 原生协议 | Anthropic Claude | `ANTHROPIC_API_KEY` |
+| Chat Completions 兼容协议 | Ollama、LM Studio、云端兼容服务 | 注册表中配置 `keyEnv` |
 
-中文字体使用霞鹜文楷屏幕版，英文和数字使用 Inter；图标使用 Lucide；像素地形使用 Kenney Tiny Town（CC0）。许可文件位于 docs/assets/。智演 / ZHIYAN 的名称与图形尚未完成商标可用性核验。
+示例型号用于说明配置方式，不保证账户权限或模型在线。界面区分“已配置”“未验证”“调用成功”；没有密钥时仍可使用本地规则。
+
+[完整接口与配置说明 →](API.md)
+
+## 能力与边界
+
+| 已实现 | 尚需实际数据与验证 |
+| --- | --- |
+| 确定性业务测算、8–128 位场景样本 | 大规模 LLM 智能体联合仿真 |
+| 三种提供商协议、逐人物模型解释 | 多智能体校准与真实性评估 |
+| 模型路由、请求超时与错误反馈 | 相对真实试验的速度、成本基准 |
+
+业务指标来自预设假设；敏感性设置改变可视化样本。模型解释单独展示，不直接改写业务指标。GitHub Pages 只托管前端，调用模型需运行本地网关。研究记录在浏览器保存；只有明确生成解释时，当前人物与策略会发送给选定提供商。
+
+## 开发与复现
+
+```bash
+npm test
+```
+
+| 目录 | 内容 |
+| --- | --- |
+| `docs/` | 工作台、About、Demo 播放页及静态资源 |
+| `server.cjs`、`lib/` | 本地静态服务与提供商协议适配器 |
+| `models.example.json` | 可编辑模型注册表 |
+| `tests/` | 协议、验证与错误路径测试 |
+| `demo/` | 独立分镜、录制与字幕工具 |
+
+<details>
+<summary>素材、字体与致谢</summary>
+
+图标来自 [Lucide](docs/assets/ICON-LICENSE.txt)，像素地形来自 [Kenney Tiny Town](docs/assets/pixel-town-license.txt)。
+中文界面使用 Noto Sans SC / Noto Serif SC，英文数字使用 [Inter](docs/assets/INTER-LICENSE.txt)；字标保留[霞鹜文楷](docs/assets/WENKAI-LICENSE.txt)。
+README 信息层级参考 [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) 与 [HKUDS/AI-Trader](https://github.com/HKUDS/AI-Trader)，无合作或从属关系。
+项目名称与图形尚未完成商标核验。
+
+</details>

@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="UTF-8"><style>
+@font-face{font-family:ZhSans;src:url('__BASE__assets/zhiyan-sans-v2.woff2')}@font-face{font-family:ZhSerif;src:url('__BASE__assets/zhiyan-serif-v2.woff2')}
+*{box-sizing:border-box}body{margin:0;background:#0b2628;font-family:ZhSans,"Microsoft YaHei",sans-serif;color:#f6f4e9;overflow:hidden}
+#mast{height:100px;padding:22px 100px;display:flex;align-items:center;justify-content:space-between;font-size:21px}#mast b{font-size:30px;letter-spacing:1px}#chapter{color:#e5be85}#label{font-size:15px;color:#b5c9c1}
+#screen{position:absolute;left:100px;top:105px;width:1720px;height:800px;overflow:hidden;border-radius:10px;box-shadow:0 14px 40px #020a0b90;background:#f4f6f1;transition:opacity .22s}
+iframe{width:1440px;height:670px;border:0;transform:scale(1.19444444);transform-origin:0 0}
+#subs{position:absolute;top:924px;left:100px;right:100px;text-align:center}#cn{font-size:32px;line-height:1.4;font-weight:600;margin:0}#en{font-size:22px;line-height:1.45;color:#c9d9d2;margin:9px 0 0}
+#bar{position:absolute;bottom:0;height:4px;width:0;background:#e5b27b;transition:width .3s}
+#card{position:absolute;inset:0;z-index:9;background:radial-gradient(ellipse at 72% 10%,#30554e,#0c292b 55%);display:flex;justify-content:center;flex-direction:column;padding:100px 140px;transition:opacity .35s}
+#card:after{content:'';position:absolute;inset:0;opacity:.08;background-image:linear-gradient(#e1ceb133 1px,transparent 1px),linear-gradient(90deg,#e1ceb133 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+#card .eyebrow{font-size:22px;color:#d7b281;letter-spacing:7px}#card h1{font-family:ZhSerif,serif;font-size:120px;font-weight:600;margin:20px 0 28px}#card p{font-size:38px;margin:0 0 15px;color:#ece9da}#card small{font-size:24px;color:#b7d0c4}
+#card .logos{display:flex;gap:38px;margin-top:65px}#card img{width:100px;height:75px}
+#focus{position:absolute;z-index:5;pointer-events:none;border:3px solid #bb704f;box-shadow:0 0 0 4px #fff8;opacity:0;transition:all .35s ease;border-radius:6px}
+</style></head><body>
+<div id="mast"><b>智演 <span style="font-size:18px;color:#9fc6b7">ZHIYAN</span></b><span id="chapter"></span><span id="label">产品演示 / PRODUCT WALKTHROUGH</span></div>
+<div id="screen"><iframe src="__BASE__index.html?scene=merchant"></iframe></div><div id="focus"></div>
+<div id="subs"><p id="cn"></p><p id="en"></p></div><div id="bar"></div>
+<div id="card"><span class="eyebrow">STRATEGIES INTO SIMULATION</span><h1>智演 <span style="font-size:72px">ZHIYAN</span></h1><p>让每个方案，都有一次预演。</p><small>Rehearse decisions before they reach the real world.</small><div class="logos"><img src="__BASE__assets/lab-merchant.svg"><img src="__BASE__assets/lab-growth.svg"><img src="__BASE__assets/lab-public.svg"></div></div>
+</body></html>
