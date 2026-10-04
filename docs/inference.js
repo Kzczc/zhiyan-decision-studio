@@ -49,6 +49,7 @@ function renderOverview(){
  $('#observer-model-label').textContent=persona?'解释方式：'+modelName(assigned())+' · '+(config.actors[actorKey()]?'人物单独设置':'跟随人群')+' · '+modelStatus(assigned()):'选择人物后，可查看解释方式并提问。';
 }
 function render(){
+ const focusedGroup=document.activeElement?.dataset.group;
  const module=window.YanceApp.getModule(),all=allModels(),vendor=$('#model-vendor').value;
  $('#model-vendor').innerHTML='<option value="">全部提供商</option>'+[...new Set(all.map(m=>m.vendor||m.provider))].sort().map(v=>'<option value="'+safe(v)+'">'+safe(v)+'</option>').join('');
  if([...$('#model-vendor').options].some(o=>o.value===vendor))$('#model-vendor').value=vendor;
@@ -64,6 +65,7 @@ function render(){
  $('#actor-effective').textContent=persona?'当前使用：'+modelName(assigned())+' · '+modelStatus(assigned()):'选择后可为此人物单独指定型号，或跟随所在人群。';
  $('#model-ask').textContent=persona&&assigned()!=='rules'?'向模型提问':'查看规则说明';
  renderOverview();
+ if(focusedGroup)Array.from($('#model-groups').querySelectorAll('select')).find(el=>el.dataset.group===focusedGroup)?.focus({preventScroll:true});
 }
 function openModels(section='model-selection',source=document.activeElement){
  returnFocus=source;render();$('#models-dialog').showModal();window.yanceTown?.setPlaying(false);

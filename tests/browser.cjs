@@ -43,7 +43,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=req
  const group=page.locator('#model-groups select').first();
  assert.equal(await group.locator('option').count(),31);
  await page.locator('#model-search').fill('DeepSeek');assert.equal(await group.locator('option').count(),4);
- await group.selectOption('deepseek-chat');
+ await group.focus();await group.selectOption('deepseek-chat');
+ assert.equal(await page.evaluate(()=>document.activeElement.dataset.group),'merchant:0','keep keyboard focus after a group selection');
  await page.locator('#model-search').fill('Claude');assert.equal(await group.inputValue(),'deepseek-chat','filter must preserve assignment');
  await page.locator('#actor-model').selectOption('claude-sonnet');
  assert.match(await page.locator('#observer-model-label').textContent(),/claude-sonnet.*人物单独设置/);
